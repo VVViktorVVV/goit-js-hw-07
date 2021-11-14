@@ -18,32 +18,31 @@ const gallery = createGalleryIteam(galleryItems);
 
 galleryBox.insertAdjacentHTML('beforeend', gallery);
 
+galleryBox.addEventListener('click', showOriginalImage);
 
 
-
-
-
-
-// const originalImage = function (array) {
-//     return array.forEach(element => {
-//         const image = element.original;
-//         console.log(image);
-        
-//     });
-        
-// }
-
-galleryBox.addEventListener('click', onImageClick);
-
-function onImageClick(evn) {
+function showOriginalImage(evn) {
     evn.preventDefault();
 
-    // const images = originalImage(galleryItems);
     const originalImage = evn.target.dataset.source;
     
-    // console.log(images);
-    console.log(originalImage);
+    const instance = basicLightbox.create(`<img src="${originalImage}">`);
+    onclick = instance.show();
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            return instance.close();
+        }
+    })
+     
 }
 
+
+
+
+
+
+
+    
 
 
