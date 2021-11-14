@@ -1,4 +1,49 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
-console.log(galleryItems);
+const galleryBox = document.querySelector('.gallery');
+
+const createGalleryIteam = function (array) {
+    return array.map(({ description, original, preview }) => {
+        return `<div class="gallery__item"><a class="gallery__link" href="${original}"><img
+                     class="gallery__image"
+                     src="${preview}"
+                     data-source="${original}"
+                     alt="${description}"
+                    /></a></div>`
+    }).join('');
+    
+}
+
+const gallery = createGalleryIteam(galleryItems);
+
+galleryBox.insertAdjacentHTML('beforeend', gallery);
+
+
+
+
+
+
+
+// const originalImage = function (array) {
+//     return array.forEach(element => {
+//         const image = element.original;
+//         console.log(image);
+        
+//     });
+        
+// }
+
+galleryBox.addEventListener('click', onImageClick);
+
+function onImageClick(evn) {
+    evn.preventDefault();
+
+    // const images = originalImage(galleryItems);
+    const originalImage = evn.target.dataset.source;
+    
+    // console.log(images);
+    console.log(originalImage);
+}
+
+
+
