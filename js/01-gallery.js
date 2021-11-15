@@ -24,17 +24,23 @@ galleryBox.addEventListener('click', showOriginalImage);
 function showOriginalImage(evn) {
     evn.preventDefault();
 
-    const originalImage = evn.target.dataset.source;
+    if (!evn.target.classList.contains('gallery__image')) {
+        return;
+     }
+        
     
-    const instance = basicLightbox.create(`<img src="${originalImage}">`);
-    onclick = instance.show();
 
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-            return instance.close();
-        }
-    })
-     
+        const originalImage = evn.target.dataset.source;
+    
+        const instance = basicLightbox.create(`<img src="${originalImage}">`);
+        onclick = instance.show();
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                return instance.close();
+            }
+        })
+    
 }
 
 
